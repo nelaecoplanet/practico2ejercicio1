@@ -27,7 +27,7 @@ public class HomeTests {
 	@Tag("8")
 	public void loginUserCorrecto() {
 		//TODO
-		System.out.println("Hola");
+		System.out.println("Hola otra vez");
 	}
 	
 	@AfterAll
