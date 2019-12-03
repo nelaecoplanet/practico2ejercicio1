@@ -14,32 +14,13 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import pages.LoginPage;
 
-public class MoviesTests {
-	private static WebDriver driverChrome;
-	
-	@BeforeAll
-    public static void setUp() {
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver/chromedriver");
-        
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
-        
-        driverChrome = new ChromeDriver(options);
-        driverChrome.manage().window().maximize();
-    }
-    
-	
+public class MoviesTests extends BaseTest{
+
 	@Test
 	@Tag("7")
 	public void loginUserCorrecto() {
 		//TODO
 		System.out.println("7");
-	}
-	
-	
-	@AfterAll
-	public static void tearDown() {
-		driverChrome.quit();
 	}
   
 }

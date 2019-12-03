@@ -6,9 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage {
+public class LoginPage extends BasePage{
 	//atributos de clase
-	private WebDriver driver;
 	private By inputEmail = By.id("exampleInputEmail");
 	private By inputPass = By.id("exampleInputPassword");
 	
@@ -17,30 +16,30 @@ public class LoginPage {
 	private By spanErrorUser = By.xpath("//input[@id=\"exampleInputEmail\"]/following-sibling::span");
 	private By spanErrorPass = By.xpath("//input[@id=\"exampleInputPassword\"]/following-sibling::span");
 	
+	
 	/**
 	* Constructor de la clase
 	* @param driver
 	*/
 	public LoginPage(WebDriver driver) {
-		this.driver = driver;
+		super(driver);
 	}
 	
 	/**
 	* Metodo que permite acceder directamente a la pagina de login
 	*/
-	public void accesoDirectoAPagina() {
-		driver.get("file:///home/renzo/Documents/CursoAutomation/web/web_automation_practice/login.html");
+	public void accesoDirectoAPaginaLogin() {
+		super.accesoDirectoAUrn("file:///home/renzo/Documents/CursoAutomation/web/web_automation_practice/login.html");
 	}
 
 	
 	/**
 	* Metodo que escribe en el input de email de usuario lo que recibe como parametro.
 	* @param cadena
+	 * @throws InterruptedException 
 	*/
 	public void escribirEmail(String cadena) {
-		WebElement weEmail = driver.findElement(inputEmail);
-		weEmail.clear();
-		weEmail.sendKeys(cadena);
+		super.enterTextInInput(super.getWebElement(inputEmail), cadena);
 	}
 	
 	
@@ -49,17 +48,14 @@ public class LoginPage {
 	* @param cadena
 	*/
 	public void escribirPass(String cadena) {
-		WebElement wePass = driver.findElement(inputPass);
-		wePass.clear();
-		wePass.sendKeys(cadena);
+		super.enterTextInInput(super.getWebElement(inputPass), cadena);
 	}
 	
 	/**
 	* Metodo para hacer clic en el boton de login
 	*/
-	public void clicEnLogin(){
-		WebElement weBtnLogin = driver.findElement(buttonLogin);
-		weBtnLogin.click();
+	public void clicEnLogin() {
+		super.getWebElement(buttonLogin).click();
 	}
 	
 	/**
@@ -68,12 +64,14 @@ public class LoginPage {
 	* @return
 	*/
 	public WebElement getWeMensajeErrorEmail(){
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		WebElement weSpanErrorEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(spanErrorUser));
-		if(weSpanErrorEmail.isDisplayed()) {
+		WebElement weSpanErrorEmail = super.waitUntilVisible(driver, spanErrorUser);
+		return weSpanErrorEmail;
+		//WebDriverWait wait = new WebDriverWait(driver, 10);
+		//WebElement weSpanErrorEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(spanErrorUser));
+		/*if(weSpanErrorEmail.isDisplayed()) {
 			return weSpanErrorEmail;
 		}
-		return null;
+		return null;*/
 	}	
 	
 	/**
@@ -82,21 +80,13 @@ public class LoginPage {
 	* @return
 	*/
 	public WebElement getWeMensajeErrorPass(){
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebElement weSpanErrorEmail = super.waitUntilVisible(driver, spanErrorPass);
+		return weSpanErrorEmail;
+		/*WebDriverWait wait = new WebDriverWait(driver, 10);
 		WebElement weSpanErrorPass = wait.until(ExpectedConditions.visibilityOfElementLocated(spanErrorPass));
 		if(weSpanErrorPass.isDisplayed()) {
 			return weSpanErrorPass;
 		}
-		return null;
+		return null;*/
 	}	
-	
-	/**
-	* Metodo que captura y retorna el texto de un web element
-	* @param webElement
-	* @return texto del web element
-	*/
-	public String getTextWebElement(WebElement webElement) {
-		return webElement.getText();
-	}
-	
 }

@@ -16,52 +16,59 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import pages.LoginPage;
 
-public class LoginTest {
+public class LoginTest extends BaseTest{
 	
-	private static WebDriver driverChrome;
+	
 	static LoginPage objLoginPage;
 	
-	@BeforeAll
-    public static void setUp() {
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver/chromedriver");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("start-maximized");
-        driverChrome = new ChromeDriver(options);
-        driverChrome.manage().window().maximize();
-        objLoginPage = new LoginPage(driverChrome);
-    }
-    
 	@Test
 	@Tag("1")
 	public void loginUserIncorrecto() {
+		objLoginPage = new LoginPage(driver);
+		
 		//accedemos a la pagina
-		objLoginPage.accesoDirectoAPagina();
+		objLoginPage.accesoDirectoAPaginaLogin();
+		
 		//escribir mail
 		objLoginPage.escribirEmail("sdsdadasdasddsagsfag");
 		//click boton de ingresar
 		objLoginPage.clicEnLogin();
 		WebElement weMsg = objLoginPage.getWeMensajeErrorEmail();
 		assertTrue(weMsg != null, "No se muestra mensaje de error cuando el mail no tiene formato correcto");
-		assertEquals("El email no tiene formato correcto", objLoginPage.getTextWebElement(weMsg), "El mensaje de error no es correcto");
+		assertEquals("El email no tiene formato correcto", weMsg.getText(), "El mensaje de error no es correcto");
+		
 	}
 	
 	
 	@Test
 	@Tag("2")
 	public void loginCorrecto() throws InterruptedException {
-		//TODO
-		objLoginPage.accesoDirectoAPagina();
-		System.out.println("2");
+		objLoginPage = new LoginPage(driver);
+		//accedemos a la pagina
+		objLoginPage.accesoDirectoAPaginaLogin();
+		objLoginPage.escribirEmail("test01@prueba.com");
+		objLoginPage.escribirPass("123456");
+		objLoginPage.clicEnLogin();
+		
+		String pageTitle = driver.getTitle();
+		assertEquals("Curso Selenium", pageTitle);
+		
 	}
 	
 	@Test
 	@Tag("3")
-	public void loginPassIncorrecto() {
-		//TODO
-		System.out.println("3");
+	public void loginPassIncorrecto() throws InterruptedException {
+		objLoginPage = new LoginPage(driver);
+		objLoginPage.accesoDirectoAPaginaLogin();
+		objLoginPage.escribirEmail("test01@prueba.com");
+		objLoginPage.escribirPass("sdsdadasdasddsagsfag");
+		objLoginPage.clicEnLogin();
+		String amsg = objLoginPage.getAlertMessage();
+		objLoginPage.clickAlertAccept();
+		assertEquals("El usuario o password no son correctos", amsg, "El mensaje de error no es correcto");
 	}
 	
-	@Test
+	/*@Test
 	@Tag("4")
 	public void loginEmptyFields() {
 		//TODO
@@ -80,10 +87,5 @@ public class LoginTest {
 	public void loginEmptyPass() {
 		//TODO
 		System.out.println("6");
-	}
-	
-	@AfterAll
-	public static void tearDown() {
-		driverChrome.quit();
-	}
+	}*/
 }
