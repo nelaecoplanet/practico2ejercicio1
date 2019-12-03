@@ -17,7 +17,7 @@ import pages.LoginPage;
 public class MoviesTests extends BaseTest{
 
 	@Test
-	@Tag("7")
+	@Tag("11")
 	public void loginUserCorrecto() {
 		//TODO
 		System.out.println("7");

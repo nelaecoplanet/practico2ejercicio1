@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class HomeTests extends BaseTest{
 	@Test
-	@Tag("8")
+	@Tag("10")
 	public void loginUserCorrecto() {
 		//TODO
 		System.out.println("Hola otra vez");

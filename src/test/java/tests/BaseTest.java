@@ -15,28 +15,23 @@ public class BaseTest {
 	
 	@BeforeAll
     public static void setUp() {
-		//guardar el navegador que se va a usar en alguna parte.
+		//guardar el navegador que se va a usar en alguna parte. (archivos properties)
 		
 		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        
-        System.out.println("setup1");
-        //objLoginPage = new LoginPage(driverChrome);
     }
 	
 	@BeforeEach
     public void initEach(){
-		System.out.println("setup2");
-        System.out.println("BeforeEach initEach() method called");
+        System.out.println("Antes de que se ejecuta cada test");
     }
 	
 	
 	@AfterAll
 	public static void tearDown() {
-		System.out.println("teardown");
 		driver.quit();
 	}
     

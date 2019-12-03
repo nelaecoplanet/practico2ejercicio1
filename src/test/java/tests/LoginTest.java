@@ -21,7 +21,7 @@ public class LoginTest extends BaseTest{
 	
 	static LoginPage objLoginPage;
 	
-	@Test
+	//@Test
 	@Tag("1")
 	public void loginUserIncorrecto() {
 		objLoginPage = new LoginPage(driver);
@@ -40,7 +40,7 @@ public class LoginTest extends BaseTest{
 	}
 	
 	
-	@Test
+	//@Test
 	@Tag("2")
 	public void loginCorrecto() throws InterruptedException {
 		objLoginPage = new LoginPage(driver);
@@ -55,7 +55,7 @@ public class LoginTest extends BaseTest{
 		
 	}
 	
-	@Test
+	//@Test
 	@Tag("3")
 	public void loginPassIncorrecto() throws InterruptedException {
 		objLoginPage = new LoginPage(driver);
