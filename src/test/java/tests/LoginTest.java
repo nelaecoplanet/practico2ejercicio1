@@ -16,7 +16,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import pages.LoginPage;
 
-public class LoginTest extends BaseTest{
+public class LoginTest extends BaseTest {
 	
 	
 	static LoginPage objLoginPage;

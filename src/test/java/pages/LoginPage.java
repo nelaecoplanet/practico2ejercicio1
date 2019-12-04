@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 	//atributos de clase
 	private By inputEmail = By.id("exampleInputEmail");
 	private By inputPass = By.id("exampleInputPassword");
@@ -22,7 +22,7 @@ public class LoginPage extends BasePage{
 	* @param driver
 	*/
 	public LoginPage(WebDriver driver) {
-		super(driver);
+		super(driver); //invocando al contructor del padre
 	}
 	
 	/**
@@ -30,6 +30,7 @@ public class LoginPage extends BasePage{
 	*/
 	public void accesoDirectoAPaginaLogin() {
 		super.accesoDirectoAUrn("file:///home/renzo/Documents/CursoAutomation/web/web_automation_practice/login.html");
+		
 	}
 
 	
@@ -39,6 +40,9 @@ public class LoginPage extends BasePage{
 	 * @throws InterruptedException 
 	*/
 	public void escribirEmail(String cadena) {
+		/*WebElement we = driver.findElement(inputEmail);
+		we.clear();
+		we.sendKeys(cadena);*/
 		super.enterTextInInput(super.getWebElement(inputEmail), cadena);
 	}
 	
@@ -48,6 +52,9 @@ public class LoginPage extends BasePage{
 	* @param cadena
 	*/
 	public void escribirPass(String cadena) {
+		/*WebElement we = driver.findElement(inputPass);
+		we.clear();
+		we.sendKeys(cadena);*/
 		super.enterTextInInput(super.getWebElement(inputPass), cadena);
 	}
 	
@@ -66,12 +73,6 @@ public class LoginPage extends BasePage{
 	public WebElement getWeMensajeErrorEmail(){
 		WebElement weSpanErrorEmail = super.waitUntilVisible(driver, spanErrorUser);
 		return weSpanErrorEmail;
-		//WebDriverWait wait = new WebDriverWait(driver, 10);
-		//WebElement weSpanErrorEmail = wait.until(ExpectedConditions.visibilityOfElementLocated(spanErrorUser));
-		/*if(weSpanErrorEmail.isDisplayed()) {
-			return weSpanErrorEmail;
-		}
-		return null;*/
 	}	
 	
 	/**
