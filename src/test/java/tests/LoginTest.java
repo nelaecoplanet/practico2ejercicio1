@@ -68,24 +68,30 @@ public class LoginTest extends BaseTest {
 		assertEquals("El usuario o password no son correctos", amsg, "El mensaje de error no es correcto");
 	}
 	
-	/*@Test
-	@Tag("4")
+	@Test
+	@Tag("lore")
 	public void loginEmptyFields() {
-		//TODO
+		//TODO	
 		System.out.println("4");
 	}
 	
 	@Test
-	@Tag("5")
+	@Tag("nela")
 	public void loginEmptyEmail() {
 		//TODO
-		System.out.println("5");
+		objLoginPage = new LoginPage(driver);
+		objLoginPage.accesoDirectoAPaginaLogin();
+		objLoginPage.escribirEmail("");
+		objLoginPage.escribirPass("sdsdadasdasddsagsfag");
+		objLoginPage.clicEnLogin();
+		WebElement amsg = objLoginPage.getWeMensajeErrorEmail();
+		assertEquals("Ingrese su email", amsg.getText(), "El mensaje de error no es correcto");
 	}
 	
 	@Test
-	@Tag("6")
+	@Tag("renzito")
 	public void loginEmptyPass() {
 		//TODO
 		System.out.println("6");
-	}*/
+	}
 }
