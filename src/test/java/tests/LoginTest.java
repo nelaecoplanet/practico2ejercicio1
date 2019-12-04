@@ -71,13 +71,20 @@ public class LoginTest extends BaseTest {
 	@Test
 	@Tag("lore")
 	public void loginEmptyFields() {
+		//TODO
 		System.out.println("4");
 	}
 	
 	@Test
 	@Tag("nela")
 	public void loginEmptyEmail() {
-		System.out.println("5");
+		objLoginPage = new LoginPage(driver);
+		objLoginPage.accesoDirectoAPaginaLogin();
+		objLoginPage.escribirEmail("");
+		objLoginPage.escribirPass("sdsdadasdasddsagsfag");
+		objLoginPage.clicEnLogin();
+		WebElement amsg = objLoginPage.getWeMensajeErrorEmail();
+		assertEquals("Ingrese su email", amsg.getText(), "El mensaje de error no es correcto");
 	}
 
 	@Test
@@ -89,6 +96,5 @@ public class LoginTest extends BaseTest {
 		objLoginPage.clicEnLogin();
 		WebElement weMsg = objLoginPage.getWeMensajeErrorPass();
 		assertEquals("Ingrese el password", weMsg.getText());
-		
 	}
 }
